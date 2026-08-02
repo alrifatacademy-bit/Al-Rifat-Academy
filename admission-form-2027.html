@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AL-RIFAT ACADEMY - Admission Form 2027</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #dceefc;
+    margin: 0;
+    padding: 20px;
+  }
+
+  /* ============ PRINT/RESET admin toolbar — hidden by default, tucked away at bottom ============ */
+  .admin-tools {
+    max-width: 794px;
+    margin: 26px auto 10px auto;
+    text-align: center;
+  }
+  .admin-toggle {
+    background: none;
+    border: none;
+    color: #78909c;
+    font-size: 12.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 6px 4px;
+  }
+  .admin-box {
+    display: none;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .admin-box.open { display: flex; flex-wrap: wrap; }
+  .admin-box button {
+    background: #1565c0;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  .admin-box button:hover { background: #0d47a1; }
+  .admin-box button.secondary { background: #607d8b; }
+  .admin-box button.secondary:hover { background: #455a64; }
+
+  .page-wrap{
+    max-width: 794px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .page {
+    width: 794px;   /* A4 width at 96dpi */
+    min-height: 1123px; /* A4 height at 96dpi */
+    margin: 0 auto;
+    background: linear-gradient(180deg, #eaf6ff 0%, #d6ecfb 100%);
+    border: 3px solid #1565c0;
+    border-radius: 10px;
+    padding: 30px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 860px){
+    .page{ width:100%; min-height:0; padding:20px; }
+  }
+
+  /* Watermark */
+  .watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .watermark img {
+    width: 520px;
+    max-width: 80%;
+    opacity: 0.10;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .logo-box {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 90px;
+    height: 90px;
+  }
+  .logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .header, .top-row, .field, .declaration, .signatures, .two-col {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Form No + Applied for Class box - fixed top-left corner of page */
+  .corner-box {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    background: #ffffff;
+    border: 1.5px solid #1565c0;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: bold;
+    color: #0d47a1;
+    font-size: 14px;
+  }
+  .applied-for-box {
+    background: #ffffff;
+    border: 1.5px solid #1565c0;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: bold;
+    color: #0d47a1;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .applied-for-box .fill {
+    border: 1.3px solid #1565c0;
+    border-radius: 4px;
+    background: #fff;
+    min-width: 60px;
+    min-height: 22px;
+    display: inline-block;
+    padding: 2px 8px;
+    font-weight: normal;
+  }
+
+  .header {
+    text-align: center;
+    border-bottom: 3px double #1565c0;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+  .header h1 {
+    color: #0d47a1;
+    margin: 0;
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+  .header .subtitle {
+    color: #1565c0;
+    font-size: 13px;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .header .address {
+    font-size: 13px;
+    color: #333;
+    margin-top: 4px;
+  }
+  .header .form-title {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0d47a1;
+    background: #bbdefb;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 20px;
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 14px 0 20px 0;
+    font-size: 14px;
+  }
+  .photo-box {
+    width: 100px;
+    height: 120px;
+    border: 1.5px dashed #1565c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #1565c0;
+    text-align: center;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  .field {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 13px;
+    font-size: 14.5px;
+    color: #222;
+  }
+  .field .num {
+    width: 26px;
+    font-weight: bold;
+    color: #0d47a1;
+  }
+  .field .label {
+    white-space: nowrap;
+    margin-right: 6px;
+  }
+  .field .fill {
+    flex: 1;
+    border-bottom: 1.3px solid #1565c0;
+    min-height: 20px;
+    outline: none;
+    padding: 0 4px;
+    background: transparent;
+    font-size: 14.5px;
+    font-family: inherit;
+  }
+  .field .fill.missing{
+    border-bottom: 1.6px solid #e53935;
+    background: #fff3f3;
+  }
+  .two-col {
+    display: flex;
+    gap: 10px;
+  }
+  .two-col .field { flex: 1; }
+  .two-col .field:nth-child(1) { flex: 1.6; }
+  .two-col .field:nth-child(2) { flex: 1; margin-left: 15px; }
+
+  .caste-options span {
+    margin-right: 14px;
+    border-bottom: 1.3px solid #1565c0;
+    padding: 0 3px;
+  }
+
+  .declaration {
+    margin-top: 28px;
+    font-size: 13.5px;
+    color: #333;
+    font-style: italic;
+    border-top: 1px dashed #1565c0;
+    padding-top: 12px;
+  }
+
+  .signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 112px;
+    font-size: 13.5px;
+    color: #0d47a1;
+    font-weight: bold;
+  }
+  .signatures div { border-top: 1.3px solid #1565c0; padding-top: 5px; width: 160px; text-align: center; }
+
+  /* ============ SUBMIT / PAYMENT / SUCCESS panels ============ */
+  .action-panel{
+    max-width: 794px;
+    margin: 22px auto;
+    background: #ffffff;
+    border: 1.5px solid #1565c0;
+    border-radius: 10px;
+    padding: 22px 26px;
+    box-shadow: 0 4px 14px rgba(13,71,161,0.12);
+  }
+  .action-panel h3{
+    color: #0d47a1;
+    margin: 0 0 6px 0;
+    font-size: 17px;
+  }
+  .action-panel p{
+    color:#455a64; font-size: 13.5px; margin: 0 0 14px 0; line-height:1.6;
+  }
+  .submit-btn{
+    width: 100%;
+    background: linear-gradient(180deg,#1e88e5,#1565c0);
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(13,71,161,0.3);
+  }
+  .submit-btn:hover{ background: linear-gradient(180deg,#1976d2,#0d47a1); }
+  .submit-btn:disabled{ opacity:0.6; cursor:not-allowed; }
+
+  .qr-row{
+    display:flex; gap:22px; align-items:center; flex-wrap:wrap;
+    background:#eaf6ff; border:1.5px dashed #1565c0; border-radius:10px;
+    padding:18px; margin-bottom:16px;
+  }
+  .qr-box{
+    width:150px; height:150px; background:#fff; border:1px solid #90caf9;
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; overflow:hidden;
+  }
+  .qr-box img{ width:100%; height:100%; object-fit:contain; }
+  .qr-box .qr-placeholder{ font-size:11.5px; color:#1565c0; text-align:center; padding:8px; }
+  .pay-info{ flex:1; min-width:200px; }
+  .pay-info .amount{ font-size:26px; font-weight:800; color:#0d47a1; }
+  .pay-info .upi-id{ font-size:14.5px; color:#333; margin-top:4px; font-weight:600; }
+  .pay-info .note{ font-size:12.5px; color:#607d8b; margin-top:8px; line-height:1.6; }
+
+  .form-row{ margin-bottom:14px; }
+  .form-row label{
+    display:block; font-size:13.5px; font-weight:600; color:#0d47a1; margin-bottom:5px;
+  }
+  .form-row input{
+    width:100%; padding:10px 12px; border:1.3px solid #90caf9; border-radius:6px;
+    font-size:14.5px; font-family:inherit; outline:none;
+  }
+  .form-row input:focus{ border-color:#1565c0; }
+
+  .back-link{
+    display:inline-block; margin-top:10px; font-size:13px; color:#607d8b; cursor:pointer; text-decoration:underline;
+  }
+
+  .success-panel{ text-align:center; }
+  .success-icon{
+    width:64px; height:64px; border-radius:50%; background:#e8f5e9; color:#2e7d32;
+    display:flex; align-items:center; justify-content:center; font-size:34px; margin:0 auto 14px auto;
+  }
+  .success-formno{
+    display:inline-block; background:#eaf6ff; border:1.3px solid #1565c0; color:#0d47a1;
+    font-weight:700; padding:8px 18px; border-radius:20px; margin-top:8px; font-size:15px;
+  }
+
+  .no-print{}
+
+  @media print {
+    html, body { background: #fff; padding: 0; margin: 0; }
+    .admin-tools, .action-panel { display: none !important; }
+    .page {
+      border: 2px solid #1565c0;
+      box-shadow: none;
+      margin: 0 auto;
+      width: 100%;
+      min-height: 277mm;
+      max-height: 277mm;
+      overflow: hidden;
+      padding: 18px 32px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color-adjust: exact;
+    }
+    .watermark img {
+      width: 460px;
+      opacity: 0.12;
+    }
+    .logo-box { top: 10px; right: 10px; width: 75px; height: 75px; }
+    .print-spacer { display: none; }
+    .header { padding-bottom: 8px; margin-bottom: 16px; }
+    .header h1 { font-size: 25px; }
+    .header .subtitle { font-size: 12px; margin-top: 3px; }
+    .header .address { font-size: 12.5px; margin-top: 3px; }
+    .header .form-title { margin-top: 9px; font-size: 16px; padding: 4px 18px; }
+
+    .corner-box { top: 10px; left: 10px; font-size: 12px; padding: 5px 10px; }
+
+    .top-row { margin: 12px 0 18px 0; font-size: 13px; }
+    .photo-box { width: 95px; height: 105px; font-size: 10.5px; }
+
+    .field { margin-bottom: 20px; font-size: 14px; }
+    .field .num { width: 22px; }
+    .field .fill { min-height: 18px; font-size: 14px; padding: 0 4px; }
+    .two-col { gap: 10px; margin-bottom: 20px; }
+    .two-col .field { margin-bottom: 0; }
+
+    .declaration { margin-top: 16px; font-size: 12.5px; padding-top: 10px; }
+    .signatures { margin-top: 87px; font-size: 12.5px; }
+    .signatures div { width: 145px; padding-top: 4px; }
+
+    @page { size: A4; margin: 7mm; }
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="page-wrap">
+  <div class="page" id="page">
+
+    <div class="watermark"><img src="" alt=""></div>
+
+    <div class="corner-box">Form No: <span id="formNo">--------</span></div>
+
+    <div class="logo-box"><img src="" alt="Logo"></div>
+
+    <div class="header">
+      <h1>AL-RIFAT ACADEMY</h1>
+      <div class="subtitle">(An Educational, Cultural &amp; Social Welfare Organization)</div>
+      <div class="address">4 No. Bazar, Ghughumari, Cooch Behar, West Bengal - 736170</div>
+      <div class="address">Phone No : +91 8670458752, Email Id - alrifatacademy@gmail.com</div>
+      <div class="title">ADMISSION OPEN FOR CLASS:(V-X)</div>
+      <div class="form-title">ENTRANCE EXAMINATION FORM – 2027</div>
+    </div>
+
+    <div class="top-row">
+      <div class="applied-for-box">Applied for Class:<span class="fill" id="f_appliedForClass" contenteditable="true"></span></div>
+      <div class="head">(THE FORM SHOULD BE FILLED IN CAPITAL LETTER)</div>
+      <div class="photo-box">Paste<br>Photo<br>Here</div>
+    </div>
+
+    <div class="field"><span class="num">1.</span><span class="label">Name of Student:</span><span class="fill" id="f_name" contenteditable="true"></span></div>
+    <div class="two-col">
+      <div class="field"><span class="num">2.</span><span class="label">Father's Name:</span><span class="fill" id="f_fatherName" contenteditable="true"></span></div>
+      <div class="field"><span class="num">3.</span><span class="label">Occupation:</span><span class="fill" id="f_fatherOcc" contenteditable="true"></span></div>
+    </div>
+    <div class="two-col">
+      <div class="field"><span class="num">4.</span><span class="label">Mother's Name:</span><span class="fill" id="f_motherName" contenteditable="true"></span></div>
+      <div class="field"><span class="num">5.</span><span class="label">Occupation:</span><span class="fill" id="f_motherOcc" contenteditable="true"></span></div>
+    </div>
+    <div class="two-col">
+      <div class="field"><span class="num">6.</span><span class="label">Guardian's Name:</span><span class="fill" id="f_guardianName" contenteditable="true"></span></div>
+      <div class="field"><span class="num">7.</span><span class="label">Relationship With Guardian:</span><span class="fill" id="f_guardianRelation" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">8.</span><span class="label">Guardian's Phone No:</span><span class="fill" id="f_guardianPhone" contenteditable="true"></span></div>
+      <div class="field"><span class="num">9.</span><span class="label">Alternate Phone No:</span><span class="fill" id="f_altPhone" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">10.</span><span class="label">WhatsApp No:</span><span class="fill" id="f_whatsapp" contenteditable="true"></span></div>
+      <div class="field"><span class="num">11.</span><span class="label">Email Id:</span><span class="fill" id="f_email" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">12.</span><span class="label">Aadhar No:</span><span class="fill" id="f_aadhar" contenteditable="true"></span></div>
+      <div class="field"><span class="num">13.</span><span class="label">Date of Birth:</span><span class="fill" id="f_dob" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">14.</span><span class="label">Vill:</span><span class="fill" id="f_vill" contenteditable="true"></span></div>
+      <div class="field"><span class="num">15.</span><span class="label">P.O:</span><span class="fill" id="f_po" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">16.</span><span class="label">P.S:</span><span class="fill" id="f_ps" contenteditable="true"></span></div>
+      <div class="field"><span class="num">17.</span><span class="label">Dist:</span><span class="fill" id="f_dist" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">18.</span><span class="label">State:</span><span class="fill" id="f_state" contenteditable="true"></span></div>
+      <div class="field"><span class="num">19.</span><span class="label">Pin No:</span><span class="fill" id="f_pin" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">20.</span><span class="label">Religion:</span><span class="fill" id="f_religion" contenteditable="true"></span></div>
+      <div class="field"><span class="num">21.</span><span class="label">Nationality:</span><span class="fill" id="f_nationality" contenteditable="true"></span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <span class="num">22.</span><span class="label">Caste:</span>
+        <span class="caste-options" id="f_caste" contenteditable="true">S.C&nbsp;&nbsp;/&nbsp;&nbsp;S.T&nbsp;&nbsp;/&nbsp;&nbsp;O.B.C&nbsp;&nbsp;/&nbsp;&nbsp;General</span>
+      </div>
+      <div class="field"><span class="num">23.</span><span class="label">Sub Caste:</span><span class="fill" id="f_subCaste" contenteditable="true"></span></div>
+    </div>
+
+    <div class="field"><span class="num">26.</span><span class="label">Name of School (Last Attended):</span><span class="fill" id="f_lastSchool" contenteditable="true"></span></div>
+
+    <div class="two-col">
+      <div class="field"><span class="num">24.</span><span class="label">Banglar Siksha Id:</span><span class="fill" id="f_bsId" contenteditable="true"></span></div>
+      <div class="field"><span class="num">25.</span><span class="label">Present Class:</span><span class="fill" id="f_presentClass" contenteditable="true"></span></div>
+    </div>
+
+    <div class="print-spacer"></div>
+
+    <div class="declaration">All the records submitted above are true to my knowledge.</div>
+
+    <div class="signatures">
+      <div>Guardian's Signature</div>
+      <div>Student's Signature</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STEP 1: SUBMIT ============ -->
+<div class="action-panel no-print" id="submitPanel">
+  <h3>ফর্ম জমা দিন</h3>
+  <p>উপরের সব তথ্য সঠিকভাবে পূরণ করে নিচের বাটনে ক্লিক করুন। এরপর ₹১০০ পেমেন্ট করে ফর্ম সম্পূর্ণ সাবমিট হবে।</p>
+  <button class="submit-btn" id="goToPaymentBtn">✅ ফর্ম সাবমিট করুন ও পেমেন্ট করুন</button>
+</div>
+
+<!-- ============ STEP 2: PAYMENT ============ -->
+<div class="action-panel no-print" id="paymentPanel" style="display:none;">
+  <h3>ভর্তি ফি পেমেন্ট — ₹১০০</h3>
+  <p>নিচের QR কোড স্ক্যান করে ₹১০০ পেমেন্ট করুন, তারপর Transaction ID (UTR) লিখে সাবমিট করুন। আমাদের টিম পেমেন্ট যাচাই করবে।</p>
+
+  <div class="qr-row">
+    <div class="qr-box">
+      <!-- ================================================================
+           UPI QR CODE: eikhane src="" e QR code image er file naam dao.
+           Jemon: src="upi-qr.png"
+           ================================================================ -->
+      <img src="" alt="UPI QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <div class="qr-placeholder">QR কোড এখানে যোগ করুন</div>
+    </div>
+    <div class="pay-info">
+      <div class="amount">₹100</div>
+      <!-- UPI ID eikhane change koro -->
+      <div class="upi-id">UPI ID: alrifatacademy@upi</div>
+      <div class="note">পেমেন্ট করার পর Transaction ID / UTR নাম্বারটি নিচে লিখুন। এটি আপনার পেমেন্ট স্লিপ বা PhonePe/GPay হিস্ট্রিতে পাবেন।</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <label for="utrInput">Transaction ID / UTR নাম্বার *</label>
+    <input type="text" id="utrInput" placeholder="যেমন: 425619583012">
+  </div>
+  <div class="form-row">
+    <label for="payerNameInput">যিনি পেমেন্ট করেছেন তার নাম</label>
+    <input type="text" id="payerNameInput" placeholder="Payer Name (ঐচ্ছিক)">
+  </div>
+
+  <button class="submit-btn" id="finalSubmitBtn">📤 পেমেন্ট সম্পন্ন হয়েছে — ফর্ম সাবমিট করুন</button>
+  <div class="back-link" id="backToFormBtn">← ফর্মে ফিরে যান</div>
+</div>
+
+<!-- ============ STEP 3: SUCCESS ============ -->
+<div class="action-panel no-print success-panel" id="successPanel" style="display:none;">
+  <div class="success-icon">✓</div>
+  <h3>ফর্ম সফলভাবে জমা হয়েছে!</h3>
+  <p>আপনার আবেদন গ্রহণ করা হয়েছে। পেমেন্ট যাচাই করার পর আমাদের টিম আপনার সাথে যোগাযোগ করবে।</p>
+  <div class="success-formno">Form No: <span id="successFormNo"></span></div>
+</div>
+
+<!-- ============ ADMIN: PRINT / RESET (hidden, office use only) ============ -->
+<div class="admin-tools no-print">
+  <button class="admin-toggle" id="adminToggle">অ্যাডমিন অপশন (অফিস ব্যবহারের জন্য)</button>
+  <div class="admin-box" id="adminBox">
+    <button onclick="prepareAndPrint()">🖨️ Print Form (Auto Form No.)</button>
+    <button class="secondary" onclick="resetCounter()">↺ Reset Form No. Counter</button>
+  </div>
+</div>
+
+<script>
+  // ================================================================
+  // GOOGLE APPS SCRIPT WEB APP URL — Code_Admission2027.gs deploy
+  // korar por je URL pabe (.../exec) seta eikhane boshiye dao.
+  // ================================================================
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbzUEMtrSu-q-Vk3tzYZUJGOmNjR_zJNayKGS6XPcKoJJ_WmRBYEPo6lV8Iq8IBvdDlm/exec";
+
+  const requiredFields = ['f_appliedForClass','f_name','f_fatherName','f_guardianName','f_guardianPhone'];
+
+  function collectFormData() {
+    const ids = ['f_appliedForClass','f_name','f_fatherName','f_fatherOcc','f_motherName','f_motherOcc',
+      'f_guardianName','f_guardianRelation','f_guardianPhone','f_altPhone','f_whatsapp','f_email',
+      'f_aadhar','f_dob','f_vill','f_po','f_ps','f_dist','f_state','f_pin','f_religion','f_nationality',
+      'f_caste','f_subCaste','f_bsId','f_presentClass','f_lastSchool'];
+    const data = {};
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      data[id.replace('f_','')] = el ? el.innerText.trim() : '';
+    });
+    return data;
+  }
+
+  function validateForm() {
+    let ok = true;
+    requiredFields.forEach(id => {
+      const el = document.getElementById(id);
+      const empty = !el.innerText.trim();
+      el.classList.toggle('missing', empty);
+      if (empty) ok = false;
+    });
+    return ok;
+  }
+
+  document.getElementById('goToPaymentBtn').addEventListener('click', () => {
+    if (!validateForm()) {
+      alert('অনুগ্রহ করে * চিহ্নিত প্রয়োজনীয় সব তথ্য পূরণ করুন (নাম, বাবার নাম, অভিভাবকের নাম ও ফোন নাম্বার, Applied for Class)।');
+      document.querySelector('.fill.missing')?.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    document.getElementById('submitPanel').style.display = 'none';
+    document.getElementById('paymentPanel').style.display = 'block';
+    document.getElementById('paymentPanel').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('backToFormBtn').addEventListener('click', () => {
+    document.getElementById('paymentPanel').style.display = 'none';
+    document.getElementById('submitPanel').style.display = 'block';
+  });
+
+  document.getElementById('finalSubmitBtn').addEventListener('click', () => {
+    const utr = document.getElementById('utrInput').value.trim();
+    if (!utr) {
+      alert('অনুগ্রহ করে Transaction ID / UTR নাম্বার লিখুন।');
+      return;
+    }
+    if (GAS_URL.indexOf('PASTE_YOUR') === 0) {
+      alert('Google Sheet backend URL এখনো সেট করা হয়নি। GAS_URL variable-এ Apps Script Web App URL বসান।');
+      return;
+    }
+
+    const btn = document.getElementById('finalSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'সাবমিট হচ্ছে...';
+
+    const payload = collectFormData();
+    payload.utr = utr;
+    payload.payerName = document.getElementById('payerNameInput').value.trim();
+
+    fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.result !== 'success' || !res.formNo) throw new Error(res.message || 'submit failed');
+      // Form No ta server (Google Sheet backend) theke ashe — tai protyekta
+      // submission er number automatically unique/alada hobe, device/browser
+      // jai hok na keno.
+      const formNo = res.formNo;
+      document.getElementById('formNo').textContent = formNo;
+      document.getElementById('paymentPanel').style.display = 'none';
+      document.getElementById('successFormNo').textContent = formNo;
+      document.getElementById('successPanel').style.display = 'block';
+      document.getElementById('successPanel').scrollIntoView({behavior:'smooth', block:'start'});
+      downloadFilledForm(formNo);
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = '📤 পেমেন্ট সম্পন্ন হয়েছে — ফর্ম সাবমিট করুন';
+      alert('সাবমিট করতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন চেক করে আবার চেষ্টা করুন।');
+    });
+  });
+
+  // ---- download filled form as PDF ----
+  function downloadFilledForm(formNo) {
+    const pageEl = document.getElementById('page');
+    const downloadNotice = document.createElement('div');
+    downloadNotice.textContent = 'ফর্মের PDF তৈরি হচ্ছে, একটু অপেক্ষা করুন...';
+    downloadNotice.style.cssText = 'max-width:794px;margin:14px auto;text-align:center;color:#0d47a1;font-size:13.5px;';
+    downloadNotice.id = 'pdfNotice';
+    document.getElementById('successPanel').insertAdjacentElement('afterend', downloadNotice);
+
+    html2canvas(pageEl, { scale: 2, useCORS: true }).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'pt', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+      const imgWidth = canvas.width * ratio;
+      const imgHeight = canvas.height * ratio;
+      const x = (pageWidth - imgWidth) / 2;
+      pdf.addImage(imgData, 'PNG', x, 0, imgWidth, imgHeight);
+      pdf.save('AL-RIFAT-Admission-Form-' + formNo + '.pdf');
+      document.getElementById('pdfNotice')?.remove();
+    }).catch(() => {
+      document.getElementById('pdfNotice')?.remove();
+    });
+  }
+
+  // ---- admin tools (office-only: print blank/serial forms, separate numbering) ----
+  document.getElementById('adminToggle').addEventListener('click', () => {
+    document.getElementById('adminBox').classList.toggle('open');
+  });
+
+  function getNextOfficePrintNo() {
+    let last = parseInt(localStorage.getItem('arAdmissionOfficePrintCounter2027') || '0', 10);
+    let next = last + 1;
+    localStorage.setItem('arAdmissionOfficePrintCounter2027', next);
+    return 'AR27-OFFICE-' + String(next).padStart(4, '0');
+  }
+
+  function prepareAndPrint() {
+    document.getElementById('formNo').textContent = getNextOfficePrintNo();
+    setTimeout(() => window.print(), 100);
+  }
+
+  function resetCounter() {
+    if (confirm('Office print counter reset korte chan? Next print theke abar 0001 theke suru hobe.')) {
+      localStorage.setItem('arAdmissionOfficePrintCounter2027', '0');
+      alert('Counter reset hoye geche.');
+    }
+  }
+</script>
+
+</body>
+</html>
