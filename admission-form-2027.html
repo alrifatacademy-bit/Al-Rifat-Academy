@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=794">
 <title>AL-RIFAT ACADEMY - Admission Form 2027</title>
 <style>
   * { box-sizing: border-box; }
@@ -35,6 +35,49 @@
     margin-top: 10px;
   }
   .admin-box.open { display: flex; flex-wrap: wrap; }
+  .admin-login {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 280px;
+    margin: 10px auto 0 auto;
+    background: #fff;
+    border: 1.5px solid #1565c0;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: left;
+  }
+  .admin-login.open { display: flex; }
+  .admin-login label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0d47a1;
+    margin-bottom: -6px;
+  }
+  .admin-login input {
+    padding: 8px 10px;
+    border: 1.3px solid #90caf9;
+    border-radius: 6px;
+    font-size: 13.5px;
+    outline: none;
+    font-family: inherit;
+  }
+  .admin-login input:focus { border-color: #1565c0; }
+  .admin-login .login-err {
+    color: #e53935;
+    font-size: 12px;
+    display: none;
+  }
+  .admin-login button {
+    background: #1565c0;
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+  .admin-login button:hover { background: #0d47a1; }
   .admin-box button {
     background: #1565c0;
     color: #fff;
@@ -66,9 +109,11 @@
     position: relative;
     overflow: hidden;
   }
+  /* Desktop mode force করার জন্য mobile media query disable করা হয়েছে
   @media (max-width: 860px){
     .page{ width:100%; min-height:0; padding:20px; }
   }
+  */
 
   /* Watermark */
   .watermark {
@@ -147,6 +192,24 @@
     padding: 2px 8px;
     font-weight: normal;
   }
+  .applied-for-box select {
+    border: 1.3px solid #1565c0;
+    border-radius: 4px;
+    background: #fff;
+    min-width: 70px;
+    min-height: 26px;
+    display: inline-block;
+    padding: 2px 6px;
+    font-weight: normal;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: #222;
+    outline: none;
+  }
+  .applied-for-box select.missing {
+    border: 1.6px solid #e53935;
+    background: #fff3f3;
+  }
 
   .header {
     text-align: center;
@@ -201,6 +264,37 @@
     text-align: center;
     border-radius: 4px;
     background: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .photo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .photo-hint {
+    font-size: 10.5px;
+    color: #607d8b;
+    max-width: 100px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .photo-remove {
+    display: none;
+    font-size: 10.5px;
+    font-weight: normal;
+    color: #e53935;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   .field {
@@ -233,6 +327,16 @@
     border-bottom: 1.6px solid #e53935;
     background: #fff3f3;
   }
+  .field select.fill {
+    border: none;
+    border-bottom: 1.3px solid #1565c0;
+    border-radius: 0;
+    color: #222;
+    appearance: auto;
+  }
+  .field.hidden-field {
+    display: none;
+  }
   .two-col {
     display: flex;
     gap: 10px;
@@ -241,10 +345,19 @@
   .two-col .field:nth-child(1) { flex: 1.6; }
   .two-col .field:nth-child(2) { flex: 1; margin-left: 15px; }
 
-  .caste-options span {
-    margin-right: 14px;
+  .caste-options select {
+    border: none;
     border-bottom: 1.3px solid #1565c0;
+    background: transparent;
     padding: 0 3px;
+    font-size: 14.5px;
+    font-family: inherit;
+    color: #222;
+    outline: none;
+  }
+  .caste-options select.missing {
+    border-bottom: 1.6px solid #e53935;
+    background: #fff3f3;
   }
 
   .declaration {
@@ -259,12 +372,55 @@
   .signatures {
     display: flex;
     justify-content: space-between;
-    margin-top: 112px;
+    margin-top: 60px;
     font-size: 13.5px;
     color: #0d47a1;
     font-weight: bold;
   }
-  .signatures div { border-top: 1.3px solid #1565c0; padding-top: 5px; width: 160px; text-align: center; }
+  .sig-block { width: 170px; text-align: center; }
+  .sig-box {
+    width: 170px;
+    height: 60px;
+    border: 1.3px dashed #1565c0;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 5px;
+    position: relative;
+  }
+  .sig-box img { width: 100%; height: 100%; object-fit: contain; }
+  .sig-box .sig-placeholder {
+    font-size: 11px;
+    font-weight: normal;
+    color: #1565c0;
+    text-align: center;
+    padding: 4px;
+  }
+  .sig-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .sig-remove {
+    display: none;
+    font-size: 11px;
+    font-weight: normal;
+    color: #e53935;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 4px;
+  }
+  .sig-hint {
+    font-size: 10.5px;
+    color: #607d8b;
+    margin-bottom: 4px;
+  }
+  .sig-label { border-top: 1.3px solid #1565c0; padding-top: 5px; }
 
   /* ============ SUBMIT / PAYMENT / SUCCESS panels ============ */
   .action-panel{
@@ -374,6 +530,7 @@
 
     .top-row { margin: 12px 0 18px 0; font-size: 13px; }
     .photo-box { width: 95px; height: 105px; font-size: 10.5px; }
+    .photo-hint, .photo-remove { display: none !important; }
 
     .field { margin-bottom: 20px; font-size: 14px; }
     .field .num { width: 22px; }
@@ -382,8 +539,12 @@
     .two-col .field { margin-bottom: 0; }
 
     .declaration { margin-top: 16px; font-size: 12.5px; padding-top: 10px; }
-    .signatures { margin-top: 87px; font-size: 12.5px; }
-    .signatures div { width: 145px; padding-top: 4px; }
+    .signatures { margin-top: 40px; font-size: 12.5px; }
+    .sig-block { width: 150px; }
+    .sig-box { width: 150px; height: 55px; border-style: solid; }
+    .sig-box input[type="file"] { display: none; }
+    .sig-remove, .sig-hint { display: none !important; }
+    .sig-label { width: 150px; padding-top: 4px; }
 
     @page { size: A4; margin: 7mm; }
   }
@@ -412,9 +573,26 @@
     </div>
 
     <div class="top-row">
-      <div class="applied-for-box">Applied for Class:<span class="fill" id="f_appliedForClass" contenteditable="true"></span></div>
+      <div class="applied-for-box">Applied for Class:
+        <select id="f_appliedForClass">
+          <option value="" selected disabled>Select</option>
+          <option value="V">V</option>
+          <option value="VI">VI</option>
+          <option value="VII">VII</option>
+          <option value="VIII">VIII</option>
+          <option value="IX">IX</option>
+          <option value="X">X</option>
+        </select>
+      </div>
       <div class="head">(THE FORM SHOULD BE FILLED IN CAPITAL LETTER)</div>
-      <div class="photo-box">Paste<br>Photo<br>Here</div>
+      <div class="photo-wrap">
+        <div class="photo-box" id="studentPhotoBox">
+          <span class="sig-placeholder">Click to upload<br>Student Photo</span>
+          <input type="file" accept="image/*" id="studentPhotoInput">
+        </div>
+        <div class="photo-remove" id="studentPhotoRemove">✕ Remove Photo</div>
+        <div class="photo-hint">Max size: 200 KB</div>
+      </div>
     </div>
 
     <div class="field"><span class="num">1.</span><span class="label">Name of Student:</span><span class="fill" id="f_name" contenteditable="true"></span></div>
@@ -469,9 +647,17 @@
     <div class="two-col">
       <div class="field">
         <span class="num">22.</span><span class="label">Caste:</span>
-        <span class="caste-options" id="f_caste" contenteditable="true">S.C&nbsp;&nbsp;/&nbsp;&nbsp;S.T&nbsp;&nbsp;/&nbsp;&nbsp;O.B.C&nbsp;&nbsp;/&nbsp;&nbsp;General</span>
+        <span class="caste-options">
+          <select id="f_caste">
+            <option value="" selected disabled>Select</option>
+            <option value="S.C">S.C</option>
+            <option value="S.T">S.T</option>
+            <option value="O.B.C">O.B.C</option>
+            <option value="General">General</option>
+          </select>
+        </span>
       </div>
-      <div class="field"><span class="num">23.</span><span class="label">Sub Caste:</span><span class="fill" id="f_subCaste" contenteditable="true"></span></div>
+      <div class="field" id="subCasteField"><span class="num">23.</span><span class="label">Sub Caste:</span><span class="fill" id="f_subCaste" contenteditable="true"></span></div>
     </div>
 
     <div class="field"><span class="num">26.</span><span class="label">Name of School (Last Attended):</span><span class="fill" id="f_lastSchool" contenteditable="true"></span></div>
@@ -486,65 +672,91 @@
     <div class="declaration">All the records submitted above are true to my knowledge.</div>
 
     <div class="signatures">
-      <div>Guardian's Signature</div>
-      <div>Student's Signature</div>
+      <div class="sig-block">
+        <div class="sig-remove" id="guardianSigRemove">✕ Remove</div>
+        <div class="sig-box" id="guardianSigBox">
+          <span class="sig-placeholder">Click to upload<br>signature</span>
+          <input type="file" accept="image/*" id="guardianSigInput">
+        </div>
+        <div class="sig-hint">Max size: 200 KB</div>
+        <div class="sig-label">Guardian's Signature</div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-remove" id="studentSigRemove">✕ Remove</div>
+        <div class="sig-box" id="studentSigBox">
+          <span class="sig-placeholder">Click to upload<br>signature</span>
+          <input type="file" accept="image/*" id="studentSigInput">
+        </div>
+        <div class="sig-hint">Max size: 200 KB</div>
+        <div class="sig-label">Student's Signature</div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ============ STEP 1: SUBMIT ============ -->
 <div class="action-panel no-print" id="submitPanel">
-  <h3>ফর্ম জমা দিন</h3>
-  <p>উপরের সব তথ্য সঠিকভাবে পূরণ করে নিচের বাটনে ক্লিক করুন। এরপর ₹১০০ পেমেন্ট করে ফর্ম সম্পূর্ণ সাবমিট হবে।</p>
-  <button class="submit-btn" id="goToPaymentBtn">✅ ফর্ম সাবমিট করুন ও পেমেন্ট করুন</button>
+  <h3>Submit the Form</h3>
+  <p>Please fill in all the details above correctly and click the button below. After that, the form will be fully submitted once the ₹100 payment is completed.</p>
+  <button class="submit-btn" id="goToPaymentBtn">✅ Submit Form &amp; Make Payment</button>
 </div>
 
 <!-- ============ STEP 2: PAYMENT ============ -->
 <div class="action-panel no-print" id="paymentPanel" style="display:none;">
-  <h3>ভর্তি ফি পেমেন্ট — ₹১০০</h3>
-  <p>নিচের QR কোড স্ক্যান করে ₹১০০ পেমেন্ট করুন, তারপর Transaction ID (UTR) লিখে সাবমিট করুন। আমাদের টিম পেমেন্ট যাচাই করবে।</p>
+  <h3>Admission Fee Payment — ₹100</h3>
+  <p>Scan the QR code below to pay ₹100, then enter the Transaction ID (UTR) and submit. Our team will verify the payment.</p>
 
   <div class="qr-row">
     <div class="qr-box">
       <!-- ================================================================
-           UPI QR CODE: eikhane src="" e QR code image er file naam dao.
-           Jemon: src="upi-qr.png"
+           UPI QR CODE: put the QR code image file name in src="" here.
+           Example: src="upi-qr.png"
            ================================================================ -->
       <img src="" alt="UPI QR Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-      <div class="qr-placeholder">QR কোড এখানে যোগ করুন</div>
+      <div class="qr-placeholder">Add UPI QR code here</div>
     </div>
     <div class="pay-info">
       <div class="amount">₹100</div>
-      <!-- UPI ID eikhane change koro -->
+      <!-- Change the UPI ID here -->
       <div class="upi-id">UPI ID: alrifatacademy@upi</div>
-      <div class="note">পেমেন্ট করার পর Transaction ID / UTR নাম্বারটি নিচে লিখুন। এটি আপনার পেমেন্ট স্লিপ বা PhonePe/GPay হিস্ট্রিতে পাবেন।</div>
+      <div class="note">After making the payment, please enter the Transaction ID / UTR number below. You can find it in your payment receipt or PhonePe/GPay history.</div>
     </div>
   </div>
 
   <div class="form-row">
-    <label for="utrInput">Transaction ID / UTR নাম্বার *</label>
-    <input type="text" id="utrInput" placeholder="যেমন: 425619583012">
+    <label for="utrInput">Transaction ID / UTR Number *</label>
+    <input type="text" id="utrInput" placeholder="e.g. 425619583012">
   </div>
   <div class="form-row">
-    <label for="payerNameInput">যিনি পেমেন্ট করেছেন তার নাম</label>
-    <input type="text" id="payerNameInput" placeholder="Payer Name (ঐচ্ছিক)">
+    <label for="payerNameInput">Name of Payer</label>
+    <input type="text" id="payerNameInput" placeholder="Payer Name (optional)">
   </div>
 
-  <button class="submit-btn" id="finalSubmitBtn">📤 পেমেন্ট সম্পন্ন হয়েছে — ফর্ম সাবমিট করুন</button>
-  <div class="back-link" id="backToFormBtn">← ফর্মে ফিরে যান</div>
+  <button class="submit-btn" id="finalSubmitBtn">📤 Payment Completed — Submit Form</button>
+  <div class="back-link" id="backToFormBtn">← Back to Form</div>
 </div>
 
 <!-- ============ STEP 3: SUCCESS ============ -->
 <div class="action-panel no-print success-panel" id="successPanel" style="display:none;">
   <div class="success-icon">✓</div>
-  <h3>ফর্ম সফলভাবে জমা হয়েছে!</h3>
-  <p>আপনার আবেদন গ্রহণ করা হয়েছে। পেমেন্ট যাচাই করার পর আমাদের টিম আপনার সাথে যোগাযোগ করবে।</p>
+  <h3>Form Submitted Successfully!</h3>
+  <p>Your application has been received. Please note down your Form No. below — our team will contact you after verifying the payment.</p>
   <div class="success-formno">Form No: <span id="successFormNo"></span></div>
 </div>
 
-<!-- ============ ADMIN: PRINT / RESET (hidden, office use only) ============ -->
+<!-- ============ ADMIN: LOGIN + PRINT / RESET (hidden, office use only) ============ -->
 <div class="admin-tools no-print">
-  <button class="admin-toggle" id="adminToggle">অ্যাডমিন অপশন (অফিস ব্যবহারের জন্য)</button>
+  <button class="admin-toggle" id="adminToggle">Admin Options (Office Use Only)</button>
+
+  <div class="admin-login" id="adminLogin">
+    <label for="adminUser">User ID</label>
+    <input type="text" id="adminUser" placeholder="Email">
+    <label for="adminPass">Password</label>
+    <input type="password" id="adminPass" placeholder="Password">
+    <div class="login-err" id="adminLoginErr">Incorrect user ID or password.</div>
+    <button id="adminLoginBtn">Login</button>
+  </div>
+
   <div class="admin-box" id="adminBox">
     <button onclick="prepareAndPrint()">🖨️ Print Form (Auto Form No.)</button>
     <button class="secondary" onclick="resetCounter()">↺ Reset Form No. Counter</button>
@@ -553,12 +765,178 @@
 
 <script>
   // ================================================================
-  // GOOGLE APPS SCRIPT WEB APP URL — Code_Admission2027.gs deploy
-  // korar por je URL pabe (.../exec) seta eikhane boshiye dao.
+  // GOOGLE APPS SCRIPT WEB APP URL — After deploying Code_Admission2027.gs
+  // put the resulting URL (ending in .../exec) here.
   // ================================================================
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbzUEMtrSu-q-Vk3tzYZUJGOmNjR_zJNayKGS6XPcKoJJ_WmRBYEPo6lV8Iq8IBvdDlm/exec";
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbwWF7t7qglMVecMkBRmKMsVkDzWZyZiMRaU2QtHm8nficM3Ulr9Npo5PQ_mhpP1dWAb/exec";
 
-  const requiredFields = ['f_appliedForClass','f_name','f_fatherName','f_guardianName','f_guardianPhone'];
+  const requiredFields = ['f_appliedForClass','f_name','f_fatherName','f_guardianName','f_guardianPhone','f_caste'];
+
+  const MAX_UPLOAD_BYTES = 200 * 1024; // 200 KB limit for photo & signature uploads
+
+  // Sub Caste options shown only when Caste = O.B.C
+  const OBC_SUBCASTE_OPTIONS = [
+    'Jolah (Ansari–Momin)',
+    'Fakir (Sain)',
+    'Dhunia',
+    'Kasai',
+    'Nashya-Sekh',
+    'Pahadia Muslim',
+    'Hajjam (Muslim)',
+    'Chowduli (Muslim)'
+  ];
+
+  function buildObcSubCasteSelect() {
+    const select = document.createElement('select');
+    select.id = 'f_subCaste';
+    select.className = 'fill';
+    const defaultOpt = document.createElement('option');
+    defaultOpt.value = '';
+    defaultOpt.textContent = 'Select';
+    defaultOpt.selected = true;
+    defaultOpt.disabled = true;
+    select.appendChild(defaultOpt);
+    OBC_SUBCASTE_OPTIONS.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt;
+      o.textContent = opt;
+      select.appendChild(o);
+    });
+    return select;
+  }
+
+  function updateSubCasteField() {
+    const casteVal = document.getElementById('f_caste').value;
+    const subCasteFieldWrap = document.getElementById('subCasteField');
+    const existing = document.getElementById('f_subCaste');
+
+    if (casteVal === 'O.B.C') {
+      // Show as dropdown with OBC sub-caste options
+      subCasteFieldWrap.classList.remove('hidden-field');
+      if (existing && existing.tagName !== 'SELECT') {
+        const select = buildObcSubCasteSelect();
+        existing.replaceWith(select);
+      } else if (!existing) {
+        const select = buildObcSubCasteSelect();
+        subCasteFieldWrap.appendChild(select);
+      }
+    } else {
+      // Hide Sub Caste field entirely for S.C / S.T / General
+      subCasteFieldWrap.classList.add('hidden-field');
+      if (existing && existing.tagName === 'SELECT') {
+        const span = document.createElement('span');
+        span.className = 'fill';
+        span.id = 'f_subCaste';
+        span.setAttribute('contenteditable', 'true');
+        existing.replaceWith(span);
+      } else if (existing) {
+        existing.innerText = '';
+      }
+    }
+  }
+
+  document.getElementById('f_caste').addEventListener('change', updateSubCasteField);
+  // initialize on load (Sub Caste hidden until a caste is chosen)
+  updateSubCasteField();
+
+  // ---- helper: format bytes as KB for messages ----
+  function formatKB(bytes) {
+    return (bytes / 1024).toFixed(1) + ' KB';
+  }
+
+  // ---- student photo upload (with 200 KB limit) ----
+  let studentPhotoDataURL = '';
+
+  (function setupPhotoUpload() {
+    const box = document.getElementById('studentPhotoBox');
+    const input = document.getElementById('studentPhotoInput');
+    const removeBtn = document.getElementById('studentPhotoRemove');
+
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+
+      if (file.size > MAX_UPLOAD_BYTES) {
+        alert('Photo is too large (' + formatKB(file.size) + '). Please upload a photo under 200 KB.');
+        input.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        studentPhotoDataURL = dataUrl;
+        box.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = dataUrl;
+        box.appendChild(img);
+        box.appendChild(input); // keep file input so user can click to change photo
+        removeBtn.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    removeBtn.addEventListener('click', () => {
+      studentPhotoDataURL = '';
+      input.value = '';
+      box.innerHTML = '<span class="sig-placeholder">Click to upload<br>Student Photo</span>';
+      box.appendChild(input);
+      removeBtn.style.display = 'none';
+    });
+  })();
+
+  // ---- signature upload (Guardian / Student) — with 200 KB limit ----
+  let guardianSigDataURL = '';
+  let studentSigDataURL = '';
+
+  function setupSignatureUpload(boxId, inputId, removeId, onSet) {
+    const box = document.getElementById(boxId);
+    const input = document.getElementById(inputId);
+    const removeBtn = document.getElementById(removeId);
+
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+
+      if (file.size > MAX_UPLOAD_BYTES) {
+        alert('Signature image is too large (' + formatKB(file.size) + '). Please upload an image under 200 KB.');
+        input.value = '';
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        onSet(dataUrl);
+        box.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = dataUrl;
+        box.appendChild(img);
+        // keep a hidden file input on top so user can re-click to change photo
+        box.appendChild(input);
+        removeBtn.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    removeBtn.addEventListener('click', () => {
+      onSet('');
+      input.value = '';
+      box.innerHTML = '<span class="sig-placeholder">Click to upload<br>signature</span>';
+      box.appendChild(input);
+      removeBtn.style.display = 'none';
+    });
+  }
+
+  setupSignatureUpload('guardianSigBox', 'guardianSigInput', 'guardianSigRemove', (val) => { guardianSigDataURL = val; });
+  setupSignatureUpload('studentSigBox', 'studentSigInput', 'studentSigRemove', (val) => { studentSigDataURL = val; });
+
+  function getFieldValue(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    if (el.tagName === 'SELECT') return el.value.trim();
+    return el.innerText.trim();
+  }
 
   function collectFormData() {
     const ids = ['f_appliedForClass','f_name','f_fatherName','f_fatherOcc','f_motherName','f_motherOcc',
@@ -567,8 +945,7 @@
       'f_caste','f_subCaste','f_bsId','f_presentClass','f_lastSchool'];
     const data = {};
     ids.forEach(id => {
-      const el = document.getElementById(id);
-      data[id.replace('f_','')] = el ? el.innerText.trim() : '';
+      data[id.replace('f_','')] = getFieldValue(id);
     });
     return data;
   }
@@ -577,17 +954,27 @@
     let ok = true;
     requiredFields.forEach(id => {
       const el = document.getElementById(id);
-      const empty = !el.innerText.trim();
+      if (!el) return;
+      const value = getFieldValue(id);
+      const empty = !value;
       el.classList.toggle('missing', empty);
       if (empty) ok = false;
     });
+    // If O.B.C is selected, Sub Caste becomes required too
+    const casteVal = getFieldValue('f_caste');
+    if (casteVal === 'O.B.C') {
+      const subEl = document.getElementById('f_subCaste');
+      const subEmpty = !getFieldValue('f_subCaste');
+      if (subEl) subEl.classList.toggle('missing', subEmpty);
+      if (subEmpty) ok = false;
+    }
     return ok;
   }
 
   document.getElementById('goToPaymentBtn').addEventListener('click', () => {
     if (!validateForm()) {
-      alert('অনুগ্রহ করে * চিহ্নিত প্রয়োজনীয় সব তথ্য পূরণ করুন (নাম, বাবার নাম, অভিভাবকের নাম ও ফোন নাম্বার, Applied for Class)।');
-      document.querySelector('.fill.missing')?.scrollIntoView({behavior:'smooth', block:'center'});
+      alert("Please fill in all required fields marked * (Name, Father's Name, Guardian's Name & Phone Number, Applied for Class, Caste).");
+      document.querySelector('.missing')?.scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
     document.getElementById('submitPanel').style.display = 'none';
@@ -603,21 +990,23 @@
   document.getElementById('finalSubmitBtn').addEventListener('click', () => {
     const utr = document.getElementById('utrInput').value.trim();
     if (!utr) {
-      alert('অনুগ্রহ করে Transaction ID / UTR নাম্বার লিখুন।');
+      alert('Please enter the Transaction ID / UTR number.');
       return;
     }
     if (GAS_URL.indexOf('PASTE_YOUR') === 0) {
-      alert('Google Sheet backend URL এখনো সেট করা হয়নি। GAS_URL variable-এ Apps Script Web App URL বসান।');
+      alert('The Google Sheet backend URL has not been set yet. Please put the Apps Script Web App URL in the GAS_URL variable.');
       return;
     }
 
     const btn = document.getElementById('finalSubmitBtn');
     btn.disabled = true;
-    btn.textContent = 'সাবমিট হচ্ছে...';
+    btn.textContent = 'Submitting...';
 
     const payload = collectFormData();
     payload.utr = utr;
     payload.payerName = document.getElementById('payerNameInput').value.trim();
+    // Note: photo & signature images are intentionally NOT sent here — they're only
+    // baked into the PDF that gets saved to the sheet (see savePdfToSheet below).
 
     fetch(GAS_URL, {
       method: 'POST',
@@ -627,32 +1016,31 @@
     .then(res => res.json())
     .then(res => {
       if (res.result !== 'success' || !res.formNo) throw new Error(res.message || 'submit failed');
-      // Form No ta server (Google Sheet backend) theke ashe — tai protyekta
-      // submission er number automatically unique/alada hobe, device/browser
-      // jai hok na keno.
+      // The Form No comes from the server (Google Sheet backend) — so every
+      // submission gets a unique number automatically, regardless of device/browser.
       const formNo = res.formNo;
       document.getElementById('formNo').textContent = formNo;
       document.getElementById('paymentPanel').style.display = 'none';
       document.getElementById('successFormNo').textContent = formNo;
       document.getElementById('successPanel').style.display = 'block';
       document.getElementById('successPanel').scrollIntoView({behavior:'smooth', block:'start'});
-      downloadFilledForm(formNo);
+      savePdfToSheet(formNo);
     })
     .catch(() => {
       btn.disabled = false;
-      btn.textContent = '📤 পেমেন্ট সম্পন্ন হয়েছে — ফর্ম সাবমিট করুন';
-      alert('সাবমিট করতে সমস্যা হয়েছে। ইন্টারনেট কানেকশন চেক করে আবার চেষ্টা করুন।');
+      btn.textContent = '📤 Payment Completed — Submit Form';
+      alert('There was a problem submitting the form. Please check your internet connection and try again.');
     });
   });
 
-  // ---- download filled form as PDF ----
-  function downloadFilledForm(formNo) {
+  // ---- generate filled form as PDF and save its base64 data into the Google Sheet (user never sees/downloads it) ----
+  function savePdfToSheet(formNo) {
     const pageEl = document.getElementById('page');
-    const downloadNotice = document.createElement('div');
-    downloadNotice.textContent = 'ফর্মের PDF তৈরি হচ্ছে, একটু অপেক্ষা করুন...';
-    downloadNotice.style.cssText = 'max-width:794px;margin:14px auto;text-align:center;color:#0d47a1;font-size:13.5px;';
-    downloadNotice.id = 'pdfNotice';
-    document.getElementById('successPanel').insertAdjacentElement('afterend', downloadNotice);
+    const notice = document.createElement('div');
+    notice.textContent = 'Finalizing your form...';
+    notice.style.cssText = 'max-width:794px;margin:14px auto;text-align:center;color:#0d47a1;font-size:13.5px;';
+    notice.id = 'pdfNotice';
+    document.getElementById('successPanel').insertAdjacentElement('afterend', notice);
 
     html2canvas(pageEl, { scale: 2, useCORS: true }).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
@@ -665,17 +1053,72 @@
       const imgHeight = canvas.height * ratio;
       const x = (pageWidth - imgWidth) / 2;
       pdf.addImage(imgData, 'PNG', x, 0, imgWidth, imgHeight);
-      pdf.save('AL-RIFAT-Admission-Form-' + formNo + '.pdf');
+
+      // Base64 PDF data (no "data:application/pdf;base64," prefix)
+      const pdfBase64 = pdf.output('datauristring').split(',')[1];
+
+      return fetch(GAS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'savePdf',
+          formNo: formNo,
+          studentName: document.getElementById('f_name').innerText.trim(),
+          pdfBase64: pdfBase64,
+          fileName: 'AL-RIFAT-Admission-Form-' + formNo + '.pdf'
+        })
+      });
+    }).then(res => res.json()).then(res => {
       document.getElementById('pdfNotice')?.remove();
-    }).catch(() => {
+      if (res.result !== 'success') {
+        // Won't disturb the user, but shows up in browser DevTools (F12 > Console)
+        // so we can see exactly why the PDF wasn't saved.
+        console.error('savePdf failed:', res.message || res);
+      } else {
+        console.log('PDF saved to Drive:', res.pdfLink);
+      }
+    }).catch(err => {
       document.getElementById('pdfNotice')?.remove();
+      // Non-fatal: the form entry is already saved to the sheet even if the
+      // PDF save step fails, so we don't alarm the user here.
+      console.error('savePdf request error:', err);
     });
   }
 
-  // ---- admin tools (office-only: print blank/serial forms, separate numbering) ----
+  // ---- admin login (office-only credentials, client-side check) ----
+  const ADMIN_USER = 'alrifatacademy@gmail.com';
+  const ADMIN_PASS = 'alrifatacademy123@#$';
+  let adminLoggedIn = false;
+
   document.getElementById('adminToggle').addEventListener('click', () => {
-    document.getElementById('adminBox').classList.toggle('open');
+    if (adminLoggedIn) {
+      document.getElementById('adminBox').classList.toggle('open');
+      return;
+    }
+    document.getElementById('adminLogin').classList.toggle('open');
   });
+
+  document.getElementById('adminLoginBtn').addEventListener('click', doAdminLogin);
+  document.getElementById('adminPass').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') doAdminLogin();
+  });
+
+  function doAdminLogin() {
+    const user = document.getElementById('adminUser').value.trim();
+    const pass = document.getElementById('adminPass').value;
+    const errEl = document.getElementById('adminLoginErr');
+
+    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      adminLoggedIn = true;
+      errEl.style.display = 'none';
+      document.getElementById('adminLogin').classList.remove('open');
+      document.getElementById('adminUser').value = '';
+      document.getElementById('adminPass').value = '';
+      document.getElementById('adminBox').classList.add('open');
+    } else {
+      errEl.style.display = 'block';
+    }
+  }
 
   function getNextOfficePrintNo() {
     let last = parseInt(localStorage.getItem('arAdmissionOfficePrintCounter2027') || '0', 10);
@@ -690,9 +1133,9 @@
   }
 
   function resetCounter() {
-    if (confirm('Office print counter reset korte chan? Next print theke abar 0001 theke suru hobe.')) {
+    if (confirm('Reset the office print counter? The next print will start again from 0001.')) {
       localStorage.setItem('arAdmissionOfficePrintCounter2027', '0');
-      alert('Counter reset hoye geche.');
+      alert('Counter has been reset.');
     }
   }
 </script>
