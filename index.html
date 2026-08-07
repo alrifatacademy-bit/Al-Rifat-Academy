@@ -72,7 +72,6 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
   }
 
-  /* Skip link for accessibility */
   .skip-link{
     position:absolute; top:-100px; left:16px; z-index:100;
     background:var(--gold); color:var(--navy-deep);
@@ -105,7 +104,6 @@
   }
   :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
 
-  /* ---------- ornament helpers ---------- */
   .corner-frame{
     position:relative;
     border:1px solid var(--line);
@@ -133,7 +131,6 @@
   }
   .gold-rule.left{margin-left:0;}
 
-  /* ---------- logo boxes (nav + hero) ---------- */
   .logo-box{
     position:relative;
     flex-shrink:0;
@@ -167,7 +164,6 @@
   .logo-box-hero{width:96px; height:96px; margin-bottom:26px;}
   .logo-box-hero .logo-fallback{font-size:1.5rem;}
 
-  /* ---------- header ---------- */
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(16,31,53,0.94);
@@ -274,7 +270,6 @@
     .mobile-menu{display:none !important;}
   }
 
-  /* ---------- hero ---------- */
   .hero{
     position:relative;
     background:var(--navy-deep);
@@ -385,13 +380,11 @@
   }
   .hero-meta span{display:flex; align-items:center; gap:8px;}
 
-  /* ---------- sections ---------- */
   section{padding:88px 24px;}
   .section-head{text-align:center; max-width:640px; margin:0 auto 48px;}
   .section-head h2{font-size:clamp(1.6rem, 3.2vw, 2.15rem); margin-top:10px;}
   .section-head p{margin-top:14px; color:#4a5568; font-size:1.02rem;}
 
-  /* about / objectives */
   .about{background:var(--white);}
   .about-grid{
     display:grid; grid-template-columns: 1fr 1.2fr; gap:56px; align-items:center;
@@ -423,7 +416,6 @@
   .stat .num{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.9rem; color:var(--navy-deep);}
   .stat .lbl{font-size:0.82rem; color:#5a6472;}
 
-  /* mission features */
   .mission{background:var(--sky-tint);}
   .feat-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:26px;
@@ -445,7 +437,6 @@
   .feat-card h3{font-size:1.06rem; margin-bottom:8px;}
   .feat-card p{font-size:0.92rem; color:#4a5568;}
 
-  /* promises grid */
   .promises{background:var(--navy-deep); color:var(--cream);}
   .promises .section-head h2{color:var(--cream);}
   .promises .section-head p{color:rgba(247,242,228,0.75);}
@@ -470,7 +461,6 @@
   .promise-card .ic{width:30px; height:30px; margin:0 auto 12px; color:var(--gold-light);}
   .promise-card span{font-size:0.86rem; line-height:1.5; display:block;}
 
-  /* campus / facilities strip */
   .campus{background:var(--cream-warm);}
   .campus-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
@@ -491,7 +481,6 @@
   .campus-item h3{font-size:0.98rem; margin-bottom:6px;}
   .campus-item p{font-size:0.86rem; color:#5a6472;}
 
-  /* ---------- gallery ---------- */
   .gallery{background:var(--white);}
   .gallery-grid{
     display:grid;
@@ -550,7 +539,6 @@
   }
   .lightbox-close:hover{background:rgba(228,197,131,0.2); border-color:var(--gold);}
 
-  /* contact */
   .contact{background:var(--white);}
   .contact-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:40px;
@@ -583,7 +571,6 @@
   .contact-row a:hover{color:var(--gold-light);}
   .phone-list{display:flex; flex-direction:column; gap:6px;}
 
-  /* Inquiry form */
   .inquiry-form{
     margin-top:28px;
     padding-top:24px;
@@ -639,7 +626,6 @@
   }
   .map-card iframe{width:100%; height:100%; min-height:320px; border:0; border-radius:4px;}
 
-  /* floating buttons */
   .float-call{
     position:fixed; right:18px; bottom:18px; z-index:60;
     background:var(--gold); color:var(--navy-deep);
@@ -677,7 +663,6 @@
   .back-to-top:hover{background:rgba(16,31,53,0.95);}
   .back-to-top svg{width:18px; height:18px;}
 
-  /* ---------- footer ---------- */
   footer{
     background:var(--navy-deep);
     color:rgba(247,242,228,0.65);
@@ -718,7 +703,6 @@
     font-size:0.82rem; color:rgba(247,242,228,0.5);
   }
 
-  /* Form success message */
   .form-msg{
     display:none;
     margin-top:12px;
@@ -740,12 +724,12 @@
   <nav class="nav" aria-label="মূল নেভিগেশন">
     <a href="#top" class="brand">
       <!-- ================================================================
-           HEADER LOGO: eikhane src="" er moddhe logo file er naam/path dao.
-           Jemon: src="logo.png"
-           Logo na dile shudhu gold "AR" letter dashed circle e dekhabe.
+           HEADER LOGO: এখানে src="" এর ভিতরে লোগো ফাইলের নাম/path দিন।
+           যেমন: src="images/logo.jpg"
+           লোগো না দিলে শুধু গোল্ড রঙের "AR" অক্ষর দেখাবে।
            ================================================================ -->
       <span class="logo-box logo-box-nav">
-        <img src="" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
+        <img src="images/logo.jpg" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
         <span class="logo-fallback">AR</span>
       </span>
       <span class="brand-text">
@@ -785,10 +769,10 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <!-- ================================================================
-         BACKGROUND PHOTO: nijer academy'r background wallpaper lagate
-         niche img tag er src="" er moddhe photo file er naam/path dao.
-         Jemon: src="academy-building.jpg"
-         Photo na dile emni poriskar navy color background thakbe.
+         BACKGROUND PHOTO: নিজের একাডেমীর background ছবি লাগাতে
+         নিচের img ট্যাগের src="" এর ভিতরে ছবি ফাইলের নাম/path দিন।
+         যেমন: src="images/academy-building.jpg"
+         ছবি না দিলে সাধারণ নেভি কালারের ব্যাকগ্রাউন্ড থাকবে।
          ================================================================ -->
     <div class="hero-bg">
       <img class="hero-bg-img" src="" alt="" onload="this.classList.add('loaded')" onerror="this.classList.remove('loaded')">
@@ -799,11 +783,11 @@
       <a class="ribbon" href="admission-form-2027.html"><span class="dot"></span> ২০২৭ শিক্ষাবর্ষে ভর্তি চলছে — ফর্ম পূরণ করুন</a>
 
       <!-- ================================================================
-           HERO LOGO: eikhane o niche src="" te logo file er naam dao,
-           header logo'r moto eita o automatic show hobe.
+           HERO LOGO: এখানেও src="" এর ভিতরে লোগো ফাইলের নাম দিন,
+           হেডার লোগোর মতো এটাও automatic দেখাবে।
            ================================================================ -->
       <span class="logo-box logo-box-hero">
-        <img src="" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
+        <img src="images/logo.jpg" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
         <span class="logo-fallback">AR</span>
       </span>
 
@@ -977,52 +961,53 @@
     </div>
 
     <!-- ================================================================
-         PHOTO JOG KORAR NIYOM:
-         Protyekta niche "src=" er moddhe photo file er naam/path dao,
-         ar seijnne "gallery-item" e "has-photo" class ta jog kore dao.
-         Jemon:
-           <div class="gallery-item has-photo">
-             <img src="campus1.jpg" alt="একাডেমীর মূল ভবন" loading="lazy">
-         Photo add na kora porjonto ei jaigata faka dashed box hisebe dekhabe.
+         ছবি যোগ করার নিয়ম (২টা কাজ করতে হবে):
+         ১) img ট্যাগের src="" এর ভিতরে ছবির ফাইলের নাম/path দিন।
+            যেমন: src="images/campus1.jpg"
+         ২) সেই ছবির "gallery-item" div-এ has-photo ক্লাস যোগ করুন।
+            যেমন: class="gallery-item has-photo"
+         দুটোই না করলে ছবি দেখাবে না — শুধু src দিলেই হবে না।
+         ছবি লোড না হলে (ভুল path হলে) automatic আবার dashed
+         placeholder বক্স দেখাবে, onerror হ্যান্ডলার দিয়ে।
          ================================================================ -->
     <div class="gallery-grid">
       <div class="gallery-item wide tall">
-        <img src="" alt="একাডেমীর মূল ভবন" loading="lazy" onerror="this.classList.add('is-empty')">
-        <div class="gallery-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          <span>মূল ভবনের ছবি যোগ করুন</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="" alt="শ্রেণিকক্ষ" loading="lazy" onerror="this.classList.add('is-empty')">
+        <img src="images/aca.jpg" alt="একাডেমীর মূল ভবন" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="" alt="কম্পিউটার ল্যাব" loading="lazy" onerror="this.classList.add('is-empty')">
+        <img src="images/te.jpg" alt="খেলার মাঠ" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
+          <span>ছবি যোগ করুন</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/tr.jpg" alt="কম্পিউটার ল্যাব" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
         </div>
       </div>
       <div class="gallery-item wide">
-        <img src="" alt="খেলার মাঠ" loading="lazy" onerror="this.classList.add('is-empty')">
+        <img src="images/tt.jpg" alt="খেলার মাঠ" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="" alt="আবাসিক ব্যবস্থা" loading="lazy" onerror="this.classList.add('is-empty')">
+        <img src="" alt="আবাসিক ব্যবস্থা" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="" alt="সাংস্কৃতিক অনুষ্ঠান" loading="lazy" onerror="this.classList.add('is-empty')">
+        <img src="" alt="সাংস্কৃতিক অনুষ্ঠান" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
@@ -1161,20 +1146,20 @@
     const text = encodeURIComponent(
       `আসসালামু আলাইকুম,\nনাম: ${name}\nফোন: ${phone}\nবার্তা: ${msg || 'ভর্তি সংক্রান্ত তথ্য চাই'}`
     );
-    // Open WhatsApp with pre-filled message
     window.open(`https://wa.me/918670458752?text=${text}`, '_blank');
     document.getElementById('formMsg').classList.add('show');
     document.getElementById('inquiryForm').reset();
     return false;
   }
 
-  // photo gallery lightbox
+  // photo gallery lightbox (works for any item that currently has-photo)
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
 
-  document.querySelectorAll('.gallery-item.has-photo img').forEach(img=>{
+  document.querySelectorAll('.gallery-item img').forEach(img=>{
     img.addEventListener('click', ()=>{
+      if(!img.closest('.gallery-item').classList.contains('has-photo')) return;
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       lightbox.classList.add('open');
