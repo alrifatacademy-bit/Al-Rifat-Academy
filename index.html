@@ -723,11 +723,6 @@
 <header>
   <nav class="nav" aria-label="মূল নেভিগেশন">
     <a href="#top" class="brand">
-      <!-- ================================================================
-           HEADER LOGO: এখানে src="" এর ভিতরে লোগো ফাইলের নাম/path দিন।
-           যেমন: src="images/logo.jpg"
-           লোগো না দিলে শুধু গোল্ড রঙের "AR" অক্ষর দেখাবে।
-           ================================================================ -->
       <span class="logo-box logo-box-nav">
         <img src="logo.jpg" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
         <span class="logo-fallback">AR</span>
@@ -768,12 +763,6 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <!-- ================================================================
-         BACKGROUND PHOTO: নিজের একাডেমীর background ছবি লাগাতে
-         নিচের img ট্যাগের src="" এর ভিতরে ছবি ফাইলের নাম/path দিন।
-         যেমন: src="images/academy-building.jpg"
-         ছবি না দিলে সাধারণ নেভি কালারের ব্যাকগ্রাউন্ড থাকবে।
-         ================================================================ -->
     <div class="hero-bg">
       <img class="hero-bg-img" src="aca.jpg" alt="" onload="this.classList.add('loaded')" onerror="this.classList.remove('loaded')">
       <div class="hero-wash"></div>
@@ -782,10 +771,6 @@
     <div class="hero-inner">
       <a class="ribbon" href="admission-form-2027.html"><span class="dot"></span> ২০২৭ শিক্ষাবর্ষে ভর্তি চলছে — ফর্ম পূরণ করুন</a>
 
-      <!-- ================================================================
-           HERO LOGO: এখানেও src="" এর ভিতরে লোগো ফাইলের নাম দিন,
-           হেডার লোগোর মতো এটাও automatic দেখাবে।
-           ================================================================ -->
       <span class="logo-box logo-box-hero">
         <img src="logo.jpg" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
         <span class="logo-fallback">AR</span>
@@ -960,16 +945,6 @@
       <p>আমাদের ক্যাম্পাস, শ্রেণিকক্ষ ও দৈনন্দিন কার্যক্রমের কিছু মুহূর্ত।</p>
     </div>
 
-    <!-- ================================================================
-         ছবি যোগ করার নিয়ম (২টা কাজ করতে হবে):
-         ১) img ট্যাগের src="" এর ভিতরে ছবির ফাইলের নাম/path দিন।
-            যেমন: src="images/campus1.jpg"
-         ২) সেই ছবির "gallery-item" div-এ has-photo ক্লাস যোগ করুন।
-            যেমন: class="gallery-item has-photo"
-         দুটোই না করলে ছবি দেখাবে না — শুধু src দিলেই হবে না।
-         ছবি লোড না হলে (ভুল path হলে) automatic আবার dashed
-         placeholder বক্স দেখাবে, onerror হ্যান্ডলার দিয়ে।
-         ================================================================ -->
     <div class="gallery-grid">
       <div class="gallery-item wide tall">
         <img src="aca.jpg" alt="একাডেমীর মূল ভবন" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
@@ -979,38 +954,39 @@
         </div>
       </div>
       <div class="gallery-item">
-        <img src="te.jpg" alt="te" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
+        <img src="te.jpg" alt="খেলার মাঠ" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          <span>ছবি </span>
+          <span>ছবি</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="rt.jpg" alt="rt" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
+        <!-- FIX: filename corrected from rt.jpg -> tr.jpg to match the uploaded file -->
+        <img src="tr.jpg" alt="কম্পিউটার ল্যাব" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
           <span>ছবি যোগ করুন</span>
         </div>
       </div>
       <div class="gallery-item wide">
-        <img src="tt.jpg" alt="tt" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
+        <img src="tt.jpg" alt="খেলার মাঠ" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          <span>ছবি </span>
+          <span>ছবি</span>
         </div>
       </div>
       <div class="gallery-item">
         <img src="" alt="আবাসিক ব্যবস্থা" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          <span>ছবি </span>
+          <span>ছবি</span>
         </div>
       </div>
       <div class="gallery-item">
         <img src="" alt="সাংস্কৃতিক অনুষ্ঠান" loading="lazy" onload="this.closest('.gallery-item').classList.add('has-photo')" onerror="this.closest('.gallery-item').classList.remove('has-photo')">
         <div class="gallery-placeholder">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="10" r="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M4 17l5-4 3 2.5 4-3.5 4 4" stroke="currentColor" stroke-width="1.3"/></svg>
-          <span>ছবি </span>
+          <span>ছবি</span>
         </div>
       </div>
     </div>
@@ -1083,7 +1059,7 @@
     <div class="footer-col">
       <div class="footer-brand-row">
         <span class="logo-box logo-box-nav">
-          <img src="" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
+          <img src="logo.jpg" alt="AL-RIFAT ACADEMY logo" onload="this.classList.add('loaded'); this.closest('.logo-box').classList.add('has-logo')" onerror="this.classList.remove('loaded')">
           <span class="logo-fallback">AR</span>
         </span>
         <span class="en">AL‑RIFAT ACADEMY</span>
